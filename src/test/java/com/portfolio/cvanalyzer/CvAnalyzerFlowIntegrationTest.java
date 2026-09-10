@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.charset.StandardCharsets;
@@ -31,6 +32,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * JSON real e HTTP real.
  */
 @IntegrationTest
+/**
+ * Roda como ADMIN: as regras de acesso ja tem teste proprio em
+ * AuthIntegrationTest, e repetir cadastro e login em cada teste de fluxo
+ * so tornaria o teste mais longo sem cobrir nada de novo.
+ */
+@WithMockUser(roles = "ADMIN")
 class CvAnalyzerFlowIntegrationTest {
 
     @Autowired

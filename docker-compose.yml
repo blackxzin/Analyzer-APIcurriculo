@@ -39,6 +39,10 @@ services:
       DB_USERNAME: ${DB_USERNAME:-cvanalyzer}
       DB_PASSWORD: ${DB_PASSWORD:-cvanalyzer}
       SERVER_PORT: 8080
+      # `:?` faz o compose recusar a subir sem o segredo definido no .env,
+      # em vez de gerar um container que morre no boot.
+      JWT_SECRET: ${JWT_SECRET:?defina JWT_SECRET no arquivo .env}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-1h}
     ports:
       - "${API_PORT:-8080}:8080"
 
