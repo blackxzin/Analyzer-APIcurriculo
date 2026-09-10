@@ -1,0 +1,54 @@
+# Sugestoes de estudo por tecnologia ausente.
+# Formato: tecnologia ; texto da recomendacao
+# Tecnologia sem linha aqui cai no texto generico do RecommendationEngine.
+
+Java;Aprofunde-se em Java moderno (records, streams, virtual threads) e resolva exercicios praticos
+Spring Boot;Estude Spring Boot construindo uma API REST completa com camadas controller, service e repository
+Spring Security;Estude Spring Security implementando autenticacao com JWT em um projeto proprio
+Spring Data JPA;Pratique Spring Data JPA modelando relacionamentos e escrevendo consultas derivadas
+Docker;Crie um Dockerfile e um docker-compose para subir um projeto seu com banco de dados
+Kubernetes;Faca o deploy de uma aplicacao sua em um cluster local (kind ou minikube)
+PostgreSQL;Pratique PostgreSQL escrevendo consultas com JOIN, indices e analisando planos de execucao
+MySQL;Pratique MySQL modelando um banco e otimizando consultas com indices
+SQL;Treine SQL resolvendo exercicios de JOIN, agregacao e subconsultas
+MongoDB;Modele uma colecao no MongoDB e compare a abordagem com um modelo relacional
+Redis;Use Redis como cache em um projeto existente e meca a diferenca de latencia
+Kafka;Construa um produtor e um consumidor Kafka em um projeto de exemplo
+RabbitMQ;Implemente uma fila com RabbitMQ para processar tarefas em segundo plano
+AWS;Faca o deploy de uma aplicacao na AWS usando EC2 ou ECS e documente o processo
+Azure;Publique uma aplicacao no Azure App Service para ganhar familiaridade com a plataforma
+Google Cloud;Publique uma aplicacao no Google Cloud Run e explore o modelo serverless
+Git;Pratique Git com branches, rebase e resolucao de conflitos em um repositorio de teste
+Maven;Configure um projeto Maven do zero, incluindo plugins de teste e cobertura
+Gradle;Configure um build Gradle do zero e compare com Maven
+JUnit;Escreva testes com JUnit 5 cobrindo casos de sucesso e de erro
+Mockito;Pratique Mockito isolando dependencias em testes de service
+Testcontainers;Use Testcontainers para testar contra um banco real em vez de banco em memoria
+TDD;Pratique TDD escrevendo o teste antes da implementacao em uma funcionalidade pequena
+CI/CD;Configure um pipeline de CI/CD que rode testes automaticamente a cada push
+GitHub Actions;Crie um workflow do GitHub Actions que rode build e testes do seu projeto
+Jenkins;Monte um pipeline Jenkins simples de build e teste
+Microservices;Divida um projeto monolitico seu em dois servicos que se comunicam por HTTP
+REST;Estude os niveis de maturidade de Richardson e aplique-os em uma API sua
+GraphQL;Construa uma API GraphQL pequena e compare o resultado com uma API REST
+Kotlin;Reescreva uma classe Java sua em Kotlin para sentir as diferencas
+Python;Construa um script ou API pequena em Python para praticar a sintaxe
+JavaScript;Pratique JavaScript moderno (async/await, modulos, destructuring)
+TypeScript;Converta um projeto JavaScript seu para TypeScript e adicione tipos
+React;Construa uma interface pequena em React consumindo uma API sua
+Angular;Construa um CRUD em Angular consumindo uma API sua
+Vue.js;Construa um CRUD em Vue consumindo uma API sua
+Node.js;Construa uma API pequena em Node.js e compare com a mesma API em Java
+Linux;Pratique linha de comando Linux: permissoes, processos, logs e redirecionamento
+Terraform;Provisione um recurso simples de nuvem com Terraform
+OAuth2;Implemente login com um provedor OAuth2 em um projeto seu
+JWT;Implemente autenticacao com JWT e entenda expiracao e refresh token
+OpenAPI;Documente uma API sua com OpenAPI e publique o Swagger UI
+Clean Architecture;Refatore um projeto seu separando dominio, aplicacao e infraestrutura
+DDD;Estude DDD modelando agregados e entidades de um dominio que voce conheca
+SOLID;Refatore uma classe grande aplicando responsabilidade unica e inversao de dependencia
+Agile;Organize seu proximo projeto em sprints curtas com um quadro Kanban
+DevOps;Automatize build, teste e deploy de um projeto seu de ponta a ponta
+Elasticsearch;Indexe dados de um projeto seu no Elasticsearch e implemente uma busca
+Prometheus;Exponha metricas da sua aplicacao e colete-as com Prometheus
+Grafana;Monte um painel no Grafana com metricas de uma aplicacao sua

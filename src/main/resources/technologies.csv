@@ -1,0 +1,147 @@
+# Catalogo de tecnologias reconhecidas.
+# Formato:  nome-canonico ; apelido1 , apelido2 , ...
+# O nome canonico e o que aparece na resposta da API; os apelidos sao as
+# variacoes que podem aparecer escritas no curriculo ou na vaga.
+# Manter em arquivo (e nao no codigo) permite ampliar o catalogo sem recompilar.
+
+# --- Linguagens ---
+Java;java,jdk,j2ee,jakarta ee,javase,javaee
+Kotlin;kotlin
+Python;python,py
+JavaScript;javascript,js,ecmascript
+TypeScript;typescript,ts
+C#;c#,csharp,c sharp
+C++;c++,cpp
+C;c
+Go;go,golang
+Rust;rust
+PHP;php
+Ruby;ruby
+Swift;swift
+Scala;scala
+Dart;dart
+Groovy;groovy
+Shell Script;shell script,bash,shell,sh scripting
+
+# --- Backend / Frameworks ---
+Spring Boot;spring boot,springboot
+Spring Framework;spring framework,spring mvc,spring core,spring
+Spring Security;spring security
+Spring Data JPA;spring data jpa,spring data
+Spring Cloud;spring cloud
+Quarkus;quarkus
+Micronaut;micronaut
+Hibernate;hibernate
+JPA;jpa,java persistence api
+Node.js;node.js,nodejs,node
+Express;express,expressjs,express.js
+NestJS;nestjs,nest.js
+Django;django
+Flask;flask
+FastAPI;fastapi
+Laravel;laravel
+Rails;rails,ruby on rails
+.NET;.net,dotnet,dot net,asp.net,aspnet
+Ktor;ktor
+
+# --- Frontend ---
+React;react,reactjs,react.js
+Angular;angular,angularjs
+Vue.js;vue.js,vuejs,vue
+Next.js;next.js,nextjs
+Svelte;svelte
+HTML;html,html5
+CSS;css,css3
+Sass;sass,scss
+Tailwind CSS;tailwind css,tailwindcss,tailwind
+Bootstrap;bootstrap
+
+# --- Mobile ---
+Android;android
+iOS;ios
+Flutter;flutter
+React Native;react native
+
+# --- Bancos de dados ---
+SQL;sql
+PostgreSQL;postgresql,postgres,psql
+MySQL;mysql
+Oracle Database;oracle database,oracle db,plsql,pl/sql
+SQL Server;sql server,sqlserver,t-sql,tsql
+MongoDB;mongodb,mongo
+Redis;redis
+Elasticsearch;elasticsearch,elastic search
+Cassandra;cassandra
+DynamoDB;dynamodb
+SQLite;sqlite
+Firebase;firebase
+Neo4j;neo4j
+
+# --- Mensageria e streaming ---
+Kafka;kafka,apache kafka
+RabbitMQ;rabbitmq,rabbit mq
+ActiveMQ;activemq
+SQS;sqs,amazon sqs
+
+# --- Cloud e infraestrutura ---
+AWS;aws,amazon web services
+Azure;azure,microsoft azure
+Google Cloud;google cloud,gcp,google cloud platform
+Docker;docker
+Kubernetes;kubernetes,k8s
+Terraform;terraform
+Ansible;ansible
+Jenkins;jenkins
+GitHub Actions;github actions
+GitLab CI;gitlab ci,gitlab-ci
+Nginx;nginx
+Linux;linux,unix
+OpenShift;openshift
+
+# --- Observabilidade ---
+Prometheus;prometheus
+Grafana;grafana
+Datadog;datadog
+Kibana;kibana
+New Relic;new relic
+Splunk;splunk
+
+# --- Testes ---
+JUnit;junit,junit5,junit 5
+Mockito;mockito
+Testcontainers;testcontainers,test containers
+Cypress;cypress
+Playwright;playwright
+Selenium;selenium
+Jest;jest
+Pytest;pytest
+Cucumber;cucumber
+JMeter;jmeter
+SonarQube;sonarqube,sonar
+
+# --- Arquitetura e praticas ---
+Microservices;microservices,microsservicos,micro servicos,microsservico
+REST;rest,restful,rest api,api rest
+GraphQL;graphql
+gRPC;grpc
+SOAP;soap
+Clean Architecture;clean architecture,arquitetura limpa
+DDD;ddd,domain driven design,domain-driven design
+SOLID;solid
+TDD;tdd,test driven development,test-driven development
+CI/CD;ci/cd,cicd,ci cd,integracao continua
+Agile;agile,agil,scrum,kanban
+DevOps;devops
+OAuth2;oauth2,oauth 2,oauth
+JWT;jwt,json web token
+OpenAPI;openapi,swagger
+
+# --- Ferramentas ---
+Git;git
+Maven;maven,apache maven
+Gradle;gradle
+Jira;jira
+Postman;postman
+IntelliJ IDEA;intellij idea,intellij
+Excel;excel,microsoft excel
+Power BI;power bi,powerbi

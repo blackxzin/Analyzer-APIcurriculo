@@ -1,0 +1,46 @@
+services:
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: cvanalyzer-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-cvanalyzer}
+      POSTGRES_USER: ${DB_USERNAME:-cvanalyzer}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-cvanalyzer}
+    ports:
+      # 5433 no host: a 5432 costuma ja estar ocupada por outro Postgres.
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      # Sem healthcheck o container aparece "up" antes de o Postgres
+      # aceitar conexao, e a aplicacao sobe, falha e reinicia.
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-cvanalyzer} -d ${DB_NAME:-cvanalyzer}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    container_name: cvanalyzer-api
+    restart: unless-stopped
+    # `profiles` deixa este servico DESLIGADO por padrao.
+    # No dia a dia rodamos so o banco em container e a aplicacao pela IDE.
+    # Para subir tudo: docker compose --profile full up -d
+    profiles: ["full"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      # Dentro da rede do compose o host do banco e o NOME DO SERVICO
+      # e a porta e a interna (5432), nao a mapeada no host.
+      DB_URL: jdbc:postgresql://postgres:5432/${DB_NAME:-cvanalyzer}
+      DB_USERNAME: ${DB_USERNAME:-cvanalyzer}
+      DB_PASSWORD: ${DB_PASSWORD:-cvanalyzer}
+      SERVER_PORT: 8080
+    ports:
+      - "${API_PORT:-8080}:8080"
+
+volumes:
+  postgres_data:
