@@ -1,6 +1,6 @@
 # CV Analyzer API
 
-[![CI](https://github.com/blackxzin/API-de-an-lise-de-curr-culo/actions/workflows/ci.yml/badge.svg)](https://github.com/blackxzin/API-de-an-lise-de-curr-culo/actions/workflows/ci.yml)
+[![CI](https://github.com/blackxzin/Analyzer-APIcurriculo/actions/workflows/ci.yml/badge.svg)](https://github.com/blackxzin/Analyzer-APIcurriculo/actions/workflows/ci.yml)
 
 API REST que recebe um currículo em PDF, extrai e estrutura suas informações,
 compara o candidato com uma descrição de vaga e devolve uma pontuação de
