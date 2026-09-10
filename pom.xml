@@ -225,6 +225,31 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+
+                    <!-- Piso de cobertura: o build FALHA abaixo de 80%.
+                         Relatorio que ninguem le vira enfeite; o gate e o
+                         que impede a cobertura de cair sem alguem perceber. -->
+                    <execution>
+                        <id>check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

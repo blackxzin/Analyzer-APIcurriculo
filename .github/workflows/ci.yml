@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Build e testes
+    runs-on: ubuntu-latest
+    # A suite roda em segundos; 20 minutos e folga suficiente para o download
+    # das dependencias e da imagem do Postgres. Sem limite, um teste travado
+    # ficaria horas ocupando o runner.
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configura o JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+          # Guarda ~/.m2 entre execucoes: sem isso cada build baixa o
+          # Spring Boot inteiro de novo.
+          cache: maven
+
+      # Os testes de integracao sobem um PostgreSQL de verdade via
+      # Testcontainers. O runner ubuntu-latest ja vem com Docker ligado,
+      # entao nao ha nada a instalar aqui.
+      - name: Build, testes e gate de cobertura
+        run: ./mvnw -B verify
+
+      - name: Publica o relatorio de cobertura
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco
+          if-no-files-found: warn
