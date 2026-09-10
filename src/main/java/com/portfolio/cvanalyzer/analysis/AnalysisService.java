@@ -9,6 +9,7 @@ import com.portfolio.cvanalyzer.analysis.engine.RecommendationEngine;
 import com.portfolio.cvanalyzer.common.exception.ResourceNotFoundException;
 import com.portfolio.cvanalyzer.job.Job;
 import com.portfolio.cvanalyzer.job.JobService;
+import com.portfolio.cvanalyzer.report.AnalysisReportGenerator;
 import com.portfolio.cvanalyzer.resume.Resume;
 import com.portfolio.cvanalyzer.resume.ResumeService;
 import org.slf4j.Logger;
@@ -41,19 +42,22 @@ public class AnalysisService {
     private final CompatibilityScorer scorer;
     private final RecommendationEngine recommendationEngine;
     private final AnalysisMapper mapper;
+    private final AnalysisReportGenerator reportGenerator;
 
     public AnalysisService(AnalysisRepository repository,
                            ResumeService resumeService,
                            JobService jobService,
                            CompatibilityScorer scorer,
                            RecommendationEngine recommendationEngine,
-                           AnalysisMapper mapper) {
+                           AnalysisMapper mapper,
+                           AnalysisReportGenerator reportGenerator) {
         this.repository = repository;
         this.resumeService = resumeService;
         this.jobService = jobService;
         this.scorer = scorer;
         this.recommendationEngine = recommendationEngine;
         this.mapper = mapper;
+        this.reportGenerator = reportGenerator;
     }
 
     @Transactional
@@ -91,6 +95,16 @@ public class AnalysisService {
         Analysis analysis = repository.findWithDetailsById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Analise", id));
         return mapper.toResponse(analysis);
+    }
+
+    /**
+     * Mesma analise da consulta por id, so que em PDF.
+     *
+     * Reaproveita findById de proposito: o relatorio nao pode divergir do
+     * JSON, e havendo duas leituras diferentes um dia divergiriam.
+     */
+    public byte[] pdfReport(UUID id) {
+        return reportGenerator.generate(findById(id));
     }
 
     public Page<AnalysisSummaryResponse> history(UUID curriculoId, UUID vagaId, Pageable pageable) {

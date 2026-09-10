@@ -10,6 +10,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +56,27 @@ public class AnalysisController {
     @Operation(summary = "Busca uma analise pelo identificador")
     public ResponseEntity<ApiResponse<AnalysisResponse>> buscar(@PathVariable UUID id) {
         return ResponseEntity.ok(ApiResponse.ok(service.findById(id)));
+    }
+
+    /**
+     * Devolve bytes, e nao o envelope ApiResponse: o corpo aqui e o proprio
+     * arquivo. O header Content-Disposition com `attachment` faz o navegador
+     * baixar em vez de tentar exibir, e ja sugere o nome do arquivo.
+     */
+    @GetMapping(value = "/{id}/relatorio", produces = MediaType.APPLICATION_PDF_VALUE)
+    @Operation(summary = "Baixa o relatorio da analise em PDF")
+    public ResponseEntity<byte[]> relatorio(@PathVariable UUID id) {
+        byte[] pdf = service.pdfReport(id);
+
+        ContentDisposition disposition = ContentDisposition.attachment()
+                .filename("analise-%s.pdf".formatted(id))
+                .build();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, disposition.toString())
+                .contentType(MediaType.APPLICATION_PDF)
+                .contentLength(pdf.length)
+                .body(pdf);
     }
 
     @GetMapping

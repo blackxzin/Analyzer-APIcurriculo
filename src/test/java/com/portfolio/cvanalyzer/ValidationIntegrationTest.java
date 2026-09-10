@@ -192,6 +192,19 @@ class ValidationIntegrationTest {
     }
 
     @Test
+    @DisplayName("relatorio de analise inexistente devolve 404 em JSON, e nao um PDF vazio")
+    void relatorioDeAnaliseInexistente() throws Exception {
+        // A rota declara produces=application/pdf. O risco aqui e o erro sair
+        // como PDF corrompido ou virar 406 na negociacao de conteudo em vez do
+        // envelope de erro normal.
+        mockMvc.perform(get("/api/v1/analyses/{id}/relatorio",
+                        "00000000-0000-0000-0000-000000000000"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.error.code").value("RECURSO_NAO_ENCONTRADO"));
+    }
+
+    @Test
     @DisplayName("listagem limita o tamanho de pagina pedido")
     void listagemLimitaTamanho() throws Exception {
         mockMvc.perform(get("/api/v1/resumes")

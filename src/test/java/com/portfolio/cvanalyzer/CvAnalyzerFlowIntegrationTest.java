@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -147,7 +148,18 @@ class CvAnalyzerFlowIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.conteudo").isEmpty());
 
-        // ---------- 6. Remocao em cascata ----------
+        // ---------- 6. Relatorio em PDF ----------
+        byte[] pdf = mockMvc.perform(get("/api/v1/analyses/{id}/relatorio", analiseId))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_PDF))
+                .andExpect(header().string("Content-Disposition",
+                        org.hamcrest.Matchers.containsString("analise-%s.pdf".formatted(analiseId))))
+                .andReturn().getResponse().getContentAsByteArray();
+
+        // %PDF nos primeiros bytes: o que voltou e mesmo um PDF, nao um JSON de erro.
+        assertThat(new String(pdf, 0, 4)).isEqualTo("%PDF");
+
+        // ---------- 7. Remocao em cascata ----------
         mockMvc.perform(delete("/api/v1/resumes/{id}", curriculoId))
                 .andExpect(status().isNoContent());
 
